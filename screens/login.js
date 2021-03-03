@@ -1,13 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, KeyboardAvoidingView } from 'react-native'
 import { Button, Image, Input } from 'react-native-elements'
 import { StatusBar } from 'expo-status-bar'
+import { auth } from '../firebase'
 
 const login = ({ navigation }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    useEffect(() => {
+        const unsubcribe = auth.onAuthStateChanged((authUser) => {
+            if (authUser) {
+                navigation.replace('Home')
+            }
+        })
+
+        return unsubcribe;
+    }, [])
+
     const signIn = () => {
+        auth.signInWithEmailAndPassword(email, password)
+            .catch((error) => alert(error))
+
 
     }
     return (
@@ -21,7 +35,7 @@ const login = ({ navigation }) => {
 
             <View style={styles.Inputcontainer}>
                 <Input placeholder='Email' autoFocus type='Email' value={email} onChangeText={(text) => setEmail(text)} />
-                <Input placeholder='Password' secureTextEntry type='Password' value={password} onChangeText={(text) => setPassword(text)} />
+                <Input placeholder='Password' secureTextEntry type='Password' value={password} onChangeText={(text) => setPassword(text)} onSubmitEditing={signIn} />
 
             </View>
             <Button title='Login' containerStyle={styles.button} onPress={signIn} />
