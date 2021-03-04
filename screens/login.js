@@ -24,6 +24,8 @@ const login = ({ navigation }) => {
 
 
     }
+
+
     return (
         <KeyboardAvoidingView behavior='padding' style={styles.outsideContainer}>
             <StatusBar style='light' />

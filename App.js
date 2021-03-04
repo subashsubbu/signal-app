@@ -8,6 +8,7 @@ import login from './screens/login';
 import register from './screens/register';
 import home from './screens/home';
 import addchat from './screens/addchat';
+import chat from './screens/chat';
 
 const GlobalScreenOptions = {
   headerStyle: { backgroundColor: 'grey' },
@@ -25,6 +26,7 @@ export default function App() {
         <Stack.Screen name='Register' component={register} />
         <Stack.Screen name='Home' component={home} />
         <Stack.Screen name='AddChat' component={addchat} />
+        <Stack.Screen name='Chat' component={chat} />
 
       </Stack.Navigator>
 

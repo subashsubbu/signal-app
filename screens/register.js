@@ -23,8 +23,7 @@ const register = ({navigation}) => {
             .then((authUser) =>{
                 authUser.user.updateProfile({
                     displayName: name,
-                    photoURL:
-                    imageUrl || " https://www.vets4pets.com/siteassets/species/cat/close-up-of-cat.jpg?w=585&scale=down "
+                    photoURL: imageUrl,
                 })
                
                 // https://www.vets4pets.com/siteassets/species/cat/close-up-of-cat.jpg?w=585&scale=down
